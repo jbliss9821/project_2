@@ -82,7 +82,7 @@ var buildCreateElements = function(){
    }
    document.getElementById('create-event-submit').onclick = function(){createEvent()};
    document.getElementById('add-task-button').onclick = function(){add_task()};
-   
+   document.getElementById('clear-task-button').onclick = function(){clear_tasks()};
 }
 
 var add_task = function() {
@@ -91,6 +91,10 @@ var add_task = function() {
 	{
 		document.getElementById("tasks").innerHTML += task_in + ", ";
 	}
+}
+
+var clear_tasks = function() {
+	document.getElementById("tasks").innerHTML = "";
 }
 
 
