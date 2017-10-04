@@ -163,15 +163,15 @@ body {
 }
 
 #create-event-container {
-   display: block;
-   width:414px;
-   height:520px;
-   margin:10px auto;
-   padding:20px;
-   border-radius:6px;
-   background-color:#264673;
-   color:white;
-   text-align:center;
+    display: block;
+    width: 414px;
+    height: auto;
+    margin: 10px auto;
+    padding: 20px 20px 50px 20px;
+    border-radius: 6px;
+    background-color: #264673;
+    color: white;
+    text-align: center;
 }
 
 #datepicker-create {
