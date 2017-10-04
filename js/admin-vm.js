@@ -82,7 +82,18 @@ var buildCreateElements = function(){
    }
    document.getElementById('create-event-submit').onclick = function(){createEvent()};
    document.getElementById('add-task-button').onclick = function(){add_task()};
+   
 }
+
+var add_task = function() {
+	var task_in = prompt("Please enter a task you would like to add to the event", "Task")
+	if (task_in != null)
+	{
+		document.getElementById("tasks").innerHTML += task_in + ", ";
+	}
+}
+
+
 /**
 *	@Function	createEvent        
 *	This function takes the contents of the event and sends that information to the AirTable
