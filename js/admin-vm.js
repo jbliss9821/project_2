@@ -271,7 +271,7 @@ var buildEventElements = function(){
       eventPeopleLabel.setAttribute('class','existing-event__people-label')
       eventPeopleLabel.textContent = 'People Attending:'
       event.appendChild(eventPeopleLabel)
-
+	  
       //add people
       eventsPeople = getPeopleArray(existingEvents[i].people)
       for(var j=0;j<eventsPeople.length;j++){
@@ -280,6 +280,12 @@ var buildEventElements = function(){
          person.textContent = eventsPeople[j].name  + ' : ' + eventsPeople[j].availableTimeBlocks 
          event.appendChild(person)
       }
+	  
+	  var eventTaskLabel = document.createElement('div');
+	  eventTaskLabel.setAttribute('class','existing-event__task-label');
+	  eventTaskLabel.textContent = 'Task List:';
+	  event.appendChild(eventTaskLabel);
+
    }
 }
 /**

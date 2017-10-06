@@ -276,3 +276,11 @@ body {
    font-weight: 300;
    margin:8px 0;
 }
+
+.existing-event__task-label {
+   float:left;
+   clear:both;
+   font-size:20px;
+   margin-top: 5px;
+   margin-bottom:3px;
+}
