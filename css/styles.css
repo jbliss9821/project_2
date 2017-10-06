@@ -156,6 +156,15 @@ body {
    color:black;
 }
 
+#task_label {
+	position: relative;
+	float: left;
+	clear: both;
+	display: block;
+	width: 398px;
+	padding-bottom: 10px;
+}
+
 .task-clear-btn {
 	display: block;
 	width:100px;

@@ -145,7 +145,6 @@ function drawEvents(){
       eventName.textContent = daysEvents[i].name
       events[i].appendChild(eventName)
 
-
       var eventTime = document.createElement('div')
       eventTime.setAttribute('class','event-time')
       eventTime.textContent = getTimes(daysEvents[i].blocks)
@@ -161,13 +160,19 @@ function drawEvents(){
       $(".event-users-name").click(function(e) {
          e.stopPropagation();
       });
+	  
+	  
+	  var eventTimeLabel = document.createElement('div');
+	  eventTimeLabel.setAttribute('class','event-time__label');
+	  eventTimeLabel.textContent = 'Available Times';
+	  events[i].appendChild(eventTimeLabel);
 
       //add checkbox's for time blocks
       var blocks = daysEvents[i].blocks.split(',')
       for(var j=0;j<blocks.length;j++) {
          var eventsBlocks = []
          eventsBlocks[j] = {}
-         eventsBlocks[j].label = document.createElement('label')
+         eventsBlocks[j].label = document.createElement('div')
          eventsBlocks[j].label.setAttribute('class','block-label')
          //Convert blocks to times here!
          eventsBlocks[j].label.innerHTML = blocksConversion(blocks[j])
@@ -182,6 +187,13 @@ function drawEvents(){
             e.stopPropagation();
          });
       }
+	  
+	  var eventTasksLabel = document.createElement('div');
+	  eventTasksLabel.setAttribute('class','task-label');
+	  eventTasksLabel.setAttribute('id','task_label');
+	  eventTasksLabel.textContent = 'Event Tasks';
+	  events[i].appendChild(eventTasksLabel);
+
 
       var submitBtn = document.createElement('button')
       submitBtn.setAttribute('class','user-submit-btn')
