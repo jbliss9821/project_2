@@ -89,7 +89,10 @@ var add_task = function() {
 	var task_in = prompt("Please enter a task you would like to add to the event", "Task")
 	if (task_in != null)
 	{
-		document.getElementById("tasks").innerHTML += task_in + ", ";
+		if (task_in != "Task")
+		{
+			document.getElementById("tasks").innerHTML += task_in + ", ";
+		}
 	}
 }
 
@@ -152,7 +155,15 @@ var createEvent = function(){
       }
    }
    event.Blocks = checkedBoxes
-   event.People = 'John Gibbons,'+checkedBoxes+'__'
+   if (document.getElementById('create-event__creator').value == "")
+   {
+	   event.People = "Anonymous," +checkedBoxes+'__';
+   }
+   else
+   {
+	   event.People = document.getElementById('create-event__creator').value + ',' +checkedBoxes+'__';
+   }
+   
    var color = Math.floor(Math.random() * 6) + 1  
    if(color == 1){
       event.Color = '#2e277b'
@@ -173,7 +184,6 @@ var createEvent = function(){
       event.Color = '#25685d'
    }
    clearCreateEventElements()
-   document.getElementById('tasks').innerHTML = "";
    var valid =  checkEventFields(event)
    if(valid){
       $.ajax({
@@ -232,6 +242,8 @@ var clearCreateEventElements = function() {
    //clear the rest
    document.getElementById('create-event__name').value = ''
    document.getElementById('datepicker-create').value = ''
+   document.getElementById('tasks').innerHTML = '';
+   document.getElementById('create-event__creator').value = '';
 }
 /**
 *	@Function	buildEventElements
