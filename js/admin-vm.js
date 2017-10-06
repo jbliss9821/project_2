@@ -281,11 +281,22 @@ var buildEventElements = function(){
          event.appendChild(person)
       }
 	  
-	  var eventTaskLabel = document.createElement('div');
-	  eventTaskLabel.setAttribute('class','existing-event__task-label');
-	  eventTaskLabel.textContent = 'Task List:';
-	  event.appendChild(eventTaskLabel);
-
+	  if (existingEvents[i].tasks != null)
+	  {
+		  var eventTaskLabel = document.createElement('div');
+		  eventTaskLabel.setAttribute('class','existing-event__task-label');
+		  eventTaskLabel.textContent = 'Task List:';
+		  event.appendChild(eventTaskLabel);
+		  
+		  var eventsTasks = getTasks(existingEvents[i].tasks);
+		  for (var k=0;k<eventsTasks.length;k++)
+		  {
+			  var task = document.createElement('div');
+			  task.setAttribute('class','existing-event__person');
+			  task.textContent = eventsTasks[k];
+			  event.appendChild(task);
+		  }
+	  }
    }
 }
 /**
