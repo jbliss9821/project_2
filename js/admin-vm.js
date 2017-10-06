@@ -117,6 +117,7 @@ var createEvent = function(){
    formattedDate =  formattedDate.replace('/','_')
    event.Date = formattedDate
    event.Name = document.getElementById('create-event__name').value
+   event.Tasks = document.getElementById('tasks').innerHTML;
 
    //Get time blocks that are checked
    var timeBlockContainers = []
@@ -172,6 +173,7 @@ var createEvent = function(){
       event.Color = '#25685d'
    }
    clearCreateEventElements()
+   document.getElementById('tasks').innerHTML = "";
    var valid =  checkEventFields(event)
    if(valid){
       $.ajax({

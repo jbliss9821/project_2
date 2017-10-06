@@ -173,7 +173,8 @@ app.post("/create", function(req,res,next){
      "Color": req.body.Color,
      "Date": req.body.Date,
      "People": req.body.People,
-     "Blocks": req.body.Blocks
+     "Blocks": req.body.Blocks,
+	 "Tasks" : req.body.Tasks
    }, function(err, record) {
          if (err) { console.error(err); return; }
          res.send(record)
