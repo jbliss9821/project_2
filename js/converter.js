@@ -190,6 +190,7 @@ var blocksConversion = function(block)
 
 function getTasks(taskString) 
 {
+	
 	let task_array = taskString.split(',');
 	
 	return task_array;

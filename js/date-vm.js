@@ -187,13 +187,34 @@ function drawEvents(){
             e.stopPropagation();
          });
       }
-	  
-	  var eventTasksLabel = document.createElement('div');
-	  eventTasksLabel.setAttribute('class','task-label');
-	  eventTasksLabel.setAttribute('id','task_label');
-	  eventTasksLabel.textContent = 'Event Tasks';
-	  events[i].appendChild(eventTasksLabel);
 
+	  if (daysEvents[i].tasks != null)
+	  {
+			var eventTasksLabel = document.createElement('div');
+			eventTasksLabel.setAttribute('class','task-label');
+			eventTasksLabel.setAttribute('id','task_label');
+			eventTasksLabel.textContent = 'Event Tasks';
+			events[i].appendChild(eventTasksLabel);
+  
+		  var eventsTasks = getTasks(daysEvents[i].tasks);
+		  for (var k=0;k<eventsTasks.length -1 ;k++)
+		  {
+				var taskboxes = [];
+				taskboxes[k] = {};
+				taskboxes[k].label = document.createElement('div');
+				taskboxes[k].label.setAttribute('class','block-label');
+				taskboxes[k].label.innerHTML = eventsTasks[k];
+				taskboxes[k].input = document.createElement('input');
+				taskboxes[k].input.setAttribute('type','checkbox');
+				taskboxes[k].input.setAttribute('name','task'+k);
+				taskboxes[k].input.setAttribute('value',eventsTasks[k]);
+				taskboxes[k].label.appendChild(taskboxes[k].input);
+				events[i].appendChild(taskboxes[k].label);
+				 $(".block-label").click(function(e) {
+				e.stopPropagation();
+				});
+		  }
+	  }
 
       var submitBtn = document.createElement('button')
       submitBtn.setAttribute('class','user-submit-btn')
