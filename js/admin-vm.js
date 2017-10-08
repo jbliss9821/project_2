@@ -261,13 +261,14 @@ var buildEventElements = function(){
       var event = document.createElement('div')
       event.setAttribute('class','existing-event')
       event.style.backgroundColor = existingEvents[i].color
-      event.onclick = function(){expandEvent(this)}
+//      event.onclick = function(){expandEvent(this)}
       document.getElementById('existing-events-container').appendChild(event)
 
       var eventName = document.createElement('span')
       eventName.textContent = existingEvents[i].name
       eventName.setAttribute('class','existing-event__name')
       event.appendChild(eventName)
+	  eventName.onclick = function(){expandEvent(event)};
 
       var eventDate = document.createElement('span')
       eventDate.textContent = existingEvents[i].date

@@ -160,19 +160,13 @@ function drawEvents(){
       $(".event-users-name").click(function(e) {
          e.stopPropagation();
       });
-	  
-	  
-	  var eventTimeLabel = document.createElement('div');
-	  eventTimeLabel.setAttribute('class','event-time__label');
-	  eventTimeLabel.textContent = 'Available Times';
-	  events[i].appendChild(eventTimeLabel);
 
       //add checkbox's for time blocks
       var blocks = daysEvents[i].blocks.split(',')
       for(var j=0;j<blocks.length;j++) {
          var eventsBlocks = []
          eventsBlocks[j] = {}
-         eventsBlocks[j].label = document.createElement('div')
+         eventsBlocks[j].label = document.createElement('label')
          eventsBlocks[j].label.setAttribute('class','block-label')
          //Convert blocks to times here!
          eventsBlocks[j].label.innerHTML = blocksConversion(blocks[j])
@@ -187,32 +181,29 @@ function drawEvents(){
             e.stopPropagation();
          });
       }
-
-	  if (daysEvents[i].tasks != null)
-	  {
-			var eventTasksLabel = document.createElement('div');
-			eventTasksLabel.setAttribute('class','task-label');
-			eventTasksLabel.setAttribute('id','task_label');
-			eventTasksLabel.textContent = 'Event Tasks';
-			events[i].appendChild(eventTasksLabel);
+	  
+	   if (daysEvents[i].tasks != null)
+	  {		  
+		  var eventTasksLabel = document.createElement('div');
+		  eventTasksLabel.setAttribute('class','task-label');
+		  eventTasksLabel.setAttribute('id','task_label');
+		  events[i].appendChild(eventTasksLabel);
+		  eventTasksLabel.textContent = 'Event Tasks';
   
 		  var eventsTasks = getTasks(daysEvents[i].tasks);
-		  for (var k=0;k<eventsTasks.length -1 ;k++)
+		  var eventTasksSelect = document.createElement('select');
+		  eventTasksSelect.setAttribute('name','eventTasksSelect');
+		  eventTasksSelect.setAttribute('id','eventTasksSelect');
+		  events[i].appendChild(eventTasksSelect);
+	      document.getElementById('eventTasksSelect').multiple = true;
+		  
+		  for (var k=0;k<eventsTasks.length - 1;k++)
 		  {
-				var taskboxes = [];
-				taskboxes[k] = {};
-				taskboxes[k].label = document.createElement('div');
-				taskboxes[k].label.setAttribute('class','block-label');
-				taskboxes[k].label.innerHTML = eventsTasks[k];
-				taskboxes[k].input = document.createElement('input');
-				taskboxes[k].input.setAttribute('type','checkbox');
-				taskboxes[k].input.setAttribute('name','task'+k);
-				taskboxes[k].input.setAttribute('value',eventsTasks[k]);
-				taskboxes[k].label.appendChild(taskboxes[k].input);
-				events[i].appendChild(taskboxes[k].label);
-				 $(".block-label").click(function(e) {
-				e.stopPropagation();
-				});
+				var option = document.createElement('option');
+				console.log(eventsTasks[k]);
+				option.value = eventsTasks[k];
+				option.text = eventsTasks[k];
+				eventTasksSelect.appendChild(option);
 		  }
 	  }
 
@@ -225,8 +216,8 @@ function drawEvents(){
       });
       //add onclick to submite btn and handle a submission
       submitBtn.onclick = function(){
-         addUserToEvent(this.parentElement)
-         clearEventFields(this.parentElement)
+         addUserToEvent(this.parentElement,)
+         clearEventFields(this.parentElement,)
       }
    }
 }
@@ -240,10 +231,10 @@ function drawEvents(){
 *
 */
 
-var clearEventFields = function(element) {
+var clearEventFields = function(element, limit) {
    var children = element.childNodes
    children[2].value = ''
-   for(var i=3;i<children.length-1;i++){
+   for(var i=3;i<children.length-limit;i++){
       var box = children[i].childNodes
       box[1].checked = false
    }
@@ -261,7 +252,7 @@ var clearEventFields = function(element) {
 *
 */
 
-var addUserToEvent = function(element) {
+var addUserToEvent = function(element, limit) {
    var event = {} 
    //check input
    var children = element.childNodes
@@ -272,7 +263,7 @@ var addUserToEvent = function(element) {
    var name = children[2].value;
    var noTimeSelected = true
    var peopleBlockString = ''
-   for(var j=3;j<children.length-1;j++){
+   for(var j=3;j<children.length-limit;j++){
       var checkbox = children[j].childNodes
       if(checkbox[1].checked){
          peopleBlockString = peopleBlockString+','+checkbox[1].value
